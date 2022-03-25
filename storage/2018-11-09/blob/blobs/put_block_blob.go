@@ -14,15 +14,18 @@ import (
 )
 
 type PutBlockBlobInput struct {
-	CacheControl       *string
-	Content            *[]byte
-	ContentDisposition *string
-	ContentEncoding    *string
-	ContentLanguage    *string
-	ContentMD5         *string
-	ContentType        *string
-	LeaseID            *string
-	MetaData           map[string]string
+	CacheControl           *string
+	Content                *[]byte
+	ContentDisposition     *string
+	ContentEncoding        *string
+	ContentLanguage        *string
+	ContentMD5             *string
+	ContentType            *string
+	EncryptionKey          *string
+	EncryptionKeyAlgorithm *string
+	EncryptionKeySHA256    *string
+	LeaseID                *string
+	MetaData               map[string]string
 }
 
 // PutBlockBlob is a wrapper around the Put API call (with a stricter input object)
@@ -98,6 +101,15 @@ func (client Client) PutBlockBlobPreparer(ctx context.Context, accountName, cont
 	}
 	if input.ContentType != nil {
 		headers["x-ms-blob-content-type"] = *input.ContentType
+	}
+	if input.EncryptionKey != nil {
+		headers["x-ms-encryption-key"] = *input.EncryptionKey
+	}
+	if input.EncryptionKeyAlgorithm != nil {
+		headers["x-ms-encryption-key-algorithm"] = *input.EncryptionKeyAlgorithm
+	}
+	if input.EncryptionKeySHA256 != nil {
+		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
 	}
 	if input.LeaseID != nil {
 		headers["x-ms-lease-id"] = *input.LeaseID

@@ -13,9 +13,12 @@ import (
 )
 
 type GetInput struct {
-	LeaseID   *string
-	StartByte *int64
-	EndByte   *int64
+	EncryptionKey          *string
+	EncryptionKeyAlgorithm *string
+	EncryptionKeySHA256    *string
+	LeaseID                *string
+	StartByte              *int64
+	EndByte                *int64
 }
 
 type GetResult struct {
@@ -80,6 +83,15 @@ func (client Client) GetPreparer(ctx context.Context, accountName, containerName
 
 	if input.StartByte != nil && input.EndByte != nil {
 		headers["x-ms-range"] = fmt.Sprintf("bytes=%d-%d", *input.StartByte, *input.EndByte)
+	}
+	if input.EncryptionKey != nil {
+		headers["x-ms-encryption-key"] = *input.EncryptionKey
+	}
+	if input.EncryptionKeyAlgorithm != nil {
+		headers["x-ms-encryption-key-algorithm"] = *input.EncryptionKeyAlgorithm
+	}
+	if input.EncryptionKeySHA256 != nil {
+		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
 	}
 
 	preparer := autorest.CreatePreparer(
