@@ -15,6 +15,9 @@ import (
 )
 
 type GetPropertiesInput struct {
+	EncryptionKey          *string
+	EncryptionKeyAlgorithm *string
+	EncryptionKeySHA256    *string
 	// The ID of the Lease
 	// This must be specified if a Lease is present on the Blob, else a 403 is returned
 	LeaseID *string
@@ -212,6 +215,15 @@ func (client Client) GetPropertiesPreparer(ctx context.Context, accountName, con
 
 	if input.LeaseID != nil {
 		headers["x-ms-lease-id"] = *input.LeaseID
+	}
+	if input.EncryptionKey != nil {
+		headers["x-ms-encryption-key"] = *input.EncryptionKey
+	}
+	if input.EncryptionKeyAlgorithm != nil {
+		headers["x-ms-encryption-key-algorithm"] = *input.EncryptionKeyAlgorithm
+	}
+	if input.EncryptionKeySHA256 != nil {
+		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
 	}
 
 	preparer := autorest.CreatePreparer(

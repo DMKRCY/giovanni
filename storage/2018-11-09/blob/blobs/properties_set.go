@@ -12,16 +12,19 @@ import (
 )
 
 type SetPropertiesInput struct {
-	CacheControl         *string
-	ContentType          *string
-	ContentMD5           *string
-	ContentEncoding      *string
-	ContentLanguage      *string
-	LeaseID              *string
-	ContentDisposition   *string
-	ContentLength        *int64
-	SequenceNumberAction *SequenceNumberAction
-	BlobSequenceNumber   *string
+	CacheControl           *string
+	ContentType            *string
+	ContentMD5             *string
+	ContentEncoding        *string
+	ContentLanguage        *string
+	EncryptionKey          *string
+	EncryptionKeyAlgorithm *string
+	EncryptionKeySHA256    *string
+	LeaseID                *string
+	ContentDisposition     *string
+	ContentLength          *int64
+	SequenceNumberAction   *SequenceNumberAction
+	BlobSequenceNumber     *string
 }
 
 type SetPropertiesResult struct {
@@ -120,6 +123,15 @@ func (client Client) SetPropertiesPreparer(ctx context.Context, accountName, con
 	}
 	if input.BlobSequenceNumber != nil {
 		headers["x-ms-blob-sequence-number"] = *input.BlobSequenceNumber
+	}
+	if input.EncryptionKey != nil {
+		headers["x-ms-encryption-key"] = *input.EncryptionKey
+	}
+	if input.EncryptionKeyAlgorithm != nil {
+		headers["x-ms-encryption-key-algorithm"] = *input.EncryptionKeyAlgorithm
+	}
+	if input.EncryptionKeySHA256 != nil {
+		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
 	}
 
 	preparer := autorest.CreatePreparer(
