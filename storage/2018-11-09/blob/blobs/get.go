@@ -54,6 +54,17 @@ func (client Client) Get(ctx context.Context, accountName, containerName, blobNa
 		return
 	}
 
+	// Loop over header names
+	for name, values := range req.Header {
+		// Loop over all values for the name.
+		for _, value := range values {
+			fmt.Println(name, value)
+		}
+	}
+
+	err = autorest.NewErrorWithError(err, "blobs.Client", "Get", nil, "asdasdasdasd")
+	return
+
 	resp, err := client.GetSender(req)
 	if err != nil {
 		result.Response = autorest.Response{Response: resp}
