@@ -56,17 +56,6 @@ func (client Client) PutBlockBlob(ctx context.Context, accountName, containerNam
 		return
 	}
 
-	fmt.Println("PutBlockBlob")
-	fmt.Println(req.URL)
-	fmt.Println(req.RequestURI)
-	// Loop over header names
-	for name, values := range req.Header {
-		// Loop over all values for the name.
-		for _, value := range values {
-			fmt.Println(name, value)
-		}
-	}
-
 	resp, err := client.PutBlockBlobSender(req)
 	if err != nil {
 		result = autorest.Response{Response: resp}
