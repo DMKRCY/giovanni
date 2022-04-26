@@ -62,9 +62,6 @@ func (client Client) Get(ctx context.Context, accountName, containerName, blobNa
 		}
 	}
 
-	err = autorest.NewErrorWithError(err, "blobs.Client", "Get", nil, "asdasdasdasd")
-	return
-
 	resp, err := client.GetSender(req)
 	if err != nil {
 		result.Response = autorest.Response{Response: resp}
