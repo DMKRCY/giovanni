@@ -113,15 +113,15 @@ func (client Client) PutBlockBlobPreparer(ctx context.Context, accountName, cont
 	if input.ContentType != nil {
 		headers["x-ms-blob-content-type"] = *input.ContentType
 	}
-	if input.EncryptionKey != nil {
-		headers["x-ms-encryption-key"] = *input.EncryptionKey
-	}
-	if input.EncryptionKeyAlgorithm != nil {
-		headers["x-ms-encryption-algorithm"] = *input.EncryptionKeyAlgorithm
-	}
-	if input.EncryptionKeySHA256 != nil {
-		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
-	}
+	// if input.EncryptionKey != nil {
+	// 	headers["x-ms-encryption-key"] = *input.EncryptionKey
+	// }
+	// if input.EncryptionKeyAlgorithm != nil {
+	// 	headers["x-ms-encryption-algorithm"] = *input.EncryptionKeyAlgorithm
+	// }
+	// if input.EncryptionKeySHA256 != nil {
+	// 	headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
+	// }
 	if input.LeaseID != nil {
 		headers["x-ms-lease-id"] = *input.LeaseID
 	}
