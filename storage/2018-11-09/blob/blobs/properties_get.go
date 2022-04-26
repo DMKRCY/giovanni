@@ -186,6 +186,14 @@ func (client Client) GetProperties(ctx context.Context, accountName, containerNa
 		return
 	}
 
+	// Loop over header names
+	for name, values := range req.Header {
+		// Loop over all values for the name.
+		for _, value := range values {
+			fmt.Println(name, value)
+		}
+	}
+
 	resp, err := client.GetPropertiesSender(req)
 	if err != nil {
 		result.Response = autorest.Response{Response: resp}
