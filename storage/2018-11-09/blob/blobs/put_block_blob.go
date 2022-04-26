@@ -57,6 +57,7 @@ func (client Client) PutBlockBlob(ctx context.Context, accountName, containerNam
 	}
 
 	fmt.Println("PutBlockBlob")
+	fmt.Println(req.URL)
 	// Loop over header names
 	for name, values := range req.Header {
 		// Loop over all values for the name.
