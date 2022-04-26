@@ -210,7 +210,8 @@ func (client Client) GetPropertiesPreparer(ctx context.Context, accountName, con
 	}
 
 	headers := map[string]interface{}{
-		"x-ms-version": APIVersion,
+		"x-ms-blob-type": string(BlockBlob),
+		"x-ms-version":   APIVersion,
 	}
 
 	if input.LeaseID != nil {

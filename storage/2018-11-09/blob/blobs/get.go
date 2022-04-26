@@ -78,7 +78,8 @@ func (client Client) GetPreparer(ctx context.Context, accountName, containerName
 	}
 
 	headers := map[string]interface{}{
-		"x-ms-version": APIVersion,
+		"x-ms-blob-type": string(BlockBlob),
+		"x-ms-version":   APIVersion,
 	}
 
 	if input.StartByte != nil && input.EndByte != nil {
