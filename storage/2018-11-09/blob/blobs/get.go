@@ -101,7 +101,7 @@ func (client Client) GetPreparer(ctx context.Context, accountName, containerName
 		headers["x-ms-encryption-algorithm"] = *input.EncryptionKeyAlgorithm
 	}
 	if input.EncryptionKeySHA256 != nil {
-		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
+		headers["x-ms-encryption-key-sha256"] = *input.EncryptionKeySHA256
 	}
 
 	preparer := autorest.CreatePreparer(
