@@ -20,6 +20,10 @@ type SetMetaDataInput struct {
 
 	// Any metadata which should be added to this blob
 	MetaData map[string]string
+
+	EncryptionKey          *string
+	EncryptionKeyAlgorithm *string
+	EncryptionKeySHA256    *string
 }
 
 // SetMetaData marks the specified blob or snapshot for deletion. The blob is later deleted during garbage collection.
@@ -79,6 +83,15 @@ func (client Client) SetMetaDataPreparer(ctx context.Context, accountName, conta
 
 	if input.LeaseID != nil {
 		headers["x-ms-lease-id"] = *input.LeaseID
+	}
+	if input.EncryptionKey != nil {
+		headers["x-ms-encryption-key"] = *input.EncryptionKey
+	}
+	if input.EncryptionKeyAlgorithm != nil {
+		headers["x-ms-encryption-algorithm"] = *input.EncryptionKeyAlgorithm
+	}
+	if input.EncryptionKeySHA256 != nil {
+		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
 	}
 
 	headers = metadata.SetIntoHeaders(headers, input.MetaData)
