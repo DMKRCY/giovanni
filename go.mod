@@ -1,4 +1,4 @@
-module github.com/tombuildsstuff/giovanni
+module github.com/DMKRCY/giovanni
 
 go 1.13
 
