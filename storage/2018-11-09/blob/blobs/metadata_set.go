@@ -50,6 +50,15 @@ func (client Client) SetMetaData(ctx context.Context, accountName, containerName
 		return
 	}
 
+	fmt.Println("SetMetaData")
+	// Loop over header names
+	for name, values := range req.Header {
+		// Loop over all values for the name.
+		for _, value := range values {
+			fmt.Println(name, value)
+		}
+	}
+
 	resp, err := client.SetMetaDataSender(req)
 	if err != nil {
 		result = autorest.Response{Response: resp}

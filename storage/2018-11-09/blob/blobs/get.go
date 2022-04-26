@@ -54,6 +54,7 @@ func (client Client) Get(ctx context.Context, accountName, containerName, blobNa
 		return
 	}
 
+	fmt.Println("Get")
 	// Loop over header names
 	for name, values := range req.Header {
 		// Loop over all values for the name.

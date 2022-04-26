@@ -186,6 +186,7 @@ func (client Client) GetProperties(ctx context.Context, accountName, containerNa
 		return
 	}
 
+	fmt.Println("GetProperties")
 	// Loop over header names
 	for name, values := range req.Header {
 		// Loop over all values for the name.
