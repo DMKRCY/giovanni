@@ -221,7 +221,7 @@ func (client Client) GetPropertiesPreparer(ctx context.Context, accountName, con
 		headers["x-ms-encryption-key"] = *input.EncryptionKey
 	}
 	if input.EncryptionKeyAlgorithm != nil {
-		headers["x-ms-encryption-key-algorithm"] = *input.EncryptionKeyAlgorithm
+		headers["x-ms-encryption-algorithm"] = *input.EncryptionKeyAlgorithm
 	}
 	if input.EncryptionKeySHA256 != nil {
 		headers["x-ms-encryption-sha256"] = *input.EncryptionKeySHA256
